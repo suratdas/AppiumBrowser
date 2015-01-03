@@ -1,7 +1,7 @@
 package com.surat;
 
-//import io.appium.java_client.AppiumDriver;
-//import java.io.File;
+import io.appium.java_client.AppiumDriver;
+import java.io.File;
 
 import java.io.File;
 import java.net.URL;
@@ -33,13 +33,17 @@ public class DeviceBrowserAutomation {
 		capabilities.setCapability ("newCommandTimeout", "120");  
 
 		//Android
-		capabilities.setCapability("browserName", "Browser");
+		capabilities.setCapability("browserName", "Chrome");
 		capabilities.setCapability("deviceName", "emulator-5554");
 		//capabilities.setCapability("androidDeviceSerial", "emulator-5554");
 		//capabilities.setCapability("platformVersion", "4.4");
 		capabilities.setCapability("platformName", "Android");
-		//driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-		driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-translate");
+		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+		
+		driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 		//*/
 		
 		/*//iOS
@@ -58,16 +62,22 @@ public class DeviceBrowserAutomation {
 	@Test
 	public void testSir() throws Exception{
 
-		/* Screenshot not working
-		 WebDriver augmentedDriver = new Augmenter().augment(driver);
-		 File f  = ((TakesScreenshot)augmentedDriver).getScreenshotAs(OutputType.FILE);
+		WebDriver augmentedDriver = new Augmenter().augment(driver);
+		File f  = ((TakesScreenshot)augmentedDriver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(f, new File("screenshot.jpg"));
-		 */
-
+		
 		driver.get("http://www.google.com");
 		driver.findElement(By.id("lst-ib")).sendKeys("cnn");
 		driver.findElement(By.id("tsbb")).click();
 		Thread.sleep(2000);
+		
+		String context = driver.getContext();
+		driver.context("NATIVE_APP");
+		int height = driver.manage().window().getSize().height;
+		driver.swipe(160, (int) (height*0.8), 160, (int) (height*0.25), 1000);
+		Thread.sleep(1000);
+		driver.context(context);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loader")));
 	}
 
 	@After
