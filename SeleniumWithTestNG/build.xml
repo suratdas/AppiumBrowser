@@ -1,0 +1,53 @@
+<project name="TestNGTest" default="test" basedir=".">
+    <!-- Define <testng> task ### http://www.tutorialspoint.com/testng/testng_plug_with_ant.htm -->
+
+    <taskdef name="testng" classname="org.testng.TestNGAntTask">
+        <classpath>
+            <pathelement location="lib/testng-6.8.jar" />
+        </classpath>
+    </taskdef>
+
+    <property name="resultdir" location="result" />
+    <property name="srcdir" location="src" />
+    <property name="libdir" location="lib" />
+    <property name="bindir" location="bin" />
+
+    <path id="classpath.base" />
+    <path id="classpath.test">
+        <fileset dir="${libdir}">
+            <include name="**/*.jar" />
+        </fileset>
+        <pathelement location="${srcdir}" />
+        <pathelement location="${bindir}" />
+        <path refid="classpath.base" />
+    </path>
+
+    <target name="clean">
+        <delete verbose="true" includeEmptyDirs="true" failonerror="false">
+            <fileset dir="${bindir}" includes="**/*" />
+            <fileset dir="${resultdir}" includes="**/*" />
+        </delete>
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="${bindir}" />
+        <mkdir dir="${resultdir}" />
+        <javac srcdir="${srcdir}" destdir="${bindir}" verbose="false">
+            <classpath refid="classpath.test" />
+        </javac>
+    </target>
+
+    <target name="test" depends="compile">
+        <mkdir dir="${resultdir}" />
+        <testng outputdir="${resultdir}" classpathref="classpath.test">
+            <xmlfileset dir="" includes="testng.xml" />
+        </testng>
+    </target>
+
+    <taskdef name="testng" classname="org.testng.TestNGAntTask">
+        <classpath>
+            <pathelement location="lib/testng-6.8.5.jar"/>
+        </classpath>
+    </taskdef>
+
+</project>

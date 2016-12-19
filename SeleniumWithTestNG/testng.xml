@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestSuite" parallel="tests">
+
+    <test name="FirstOSFirstBrowser">
+        <parameter name="platform" value="VISTA" />
+        <parameter name="browser" value="firefox" />
+        <classes>
+            <class name="com.surat.tests.TestCase1" />
+        </classes>
+    </test>
+    <!--
+        <test name="SecondOSSecondBrowser">
+            <parameter name="platform" value="VISTA" />
+            <parameter name="browser" value="internet explorer" />
+            <classes>
+                <class name="tests.TestCases" />
+            </classes>
+        </test>
+
+        <test name="ThirdOSThirdBrowser">
+            <parameter name="platform" value="VISTA" />
+            <parameter name="browser" value="chrome" />
+            <parameter name="version" value="37" />
+
+            //The version value can be "ANY" or
+            //"<specific version>" or
+            //this parameter can be removed since it is defined as optional in test code
+
+            <classes>
+                <class name="tests.TestCases" />
+            </classes>
+        </test>
+
+        <test name="FourthOFourthBrowser">
+            <parameter name="platform" value="VISTA" />
+            <parameter name="browser" value="safari" />
+            <classes>
+                <class name="tests.TestCases" />
+            </classes>
+        </test>
+
+        <test name="FifthOSFifthBrowser">
+            <parameter name="platform" value="Mac" />
+            <parameter name="browser" value="safari" />
+            <parameter name="version" value="ANY" />
+            <classes>
+                <class name="tests.TestCases" />
+            </classes>
+        </test>
+     -->
+
+</suite>
