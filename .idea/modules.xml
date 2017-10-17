@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AppiumApp/AppiumApp.iml" filepath="$PROJECT_DIR$/AppiumApp/AppiumApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AppiumApp/src/AppiumApp.iml" filepath="$PROJECT_DIR$/AppiumApp/src/AppiumApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/AppiumBrowser/AppiumBrowser.iml" filepath="$PROJECT_DIR$/AppiumBrowser/AppiumBrowser.iml" />
       <module fileurl="file://$PROJECT_DIR$/SeleniumWithTestNG/SeleniumWithTestNG.iml" filepath="$PROJECT_DIR$/SeleniumWithTestNG/SeleniumWithTestNG.iml" />
     </modules>

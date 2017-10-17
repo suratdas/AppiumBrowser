@@ -6,6 +6,8 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static com.surat.common.Initialization.secondPage;
+
 public class FirstPage extends BasePage {
 
     public FirstPage(WebDriver driver) {
@@ -20,9 +22,17 @@ public class FirstPage extends BasePage {
     @FindBy(xpath = ".//*[@id='menu']/div[4]/div[3]/a")
     WebElement PercentCalculator;
 
-    public SecondPage uf_GoToPercentCalculator(){
+    public SecondPage uf_GoToPercentCalculator() {
         MathCalculator.click();
         PercentCalculator.click();
-        return PageFactory.initElements(driver, SecondPage.class);
+        secondPage = PageFactory.initElements(driver, SecondPage.class);
+        return secondPage;
+    }
+
+    public boolean GoToPercentCalculator() {
+        MathCalculator.click();
+        PercentCalculator.click();
+        secondPage = PageFactory.initElements(driver, SecondPage.class);
+        return true;
     }
 }
