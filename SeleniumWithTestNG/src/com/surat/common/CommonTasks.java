@@ -156,4 +156,54 @@ public class CommonTasks {
     }
 
 
+    /* To use autoIt in Java follow below steps -
+        1. Download JACOB.
+        2. Download and install AutoIt. (Or register AutoIt dll file)
+        3. Add jacob.jar and autoitx4java.jar to your library path.
+        4. Place the jacob-1.15-M4-x64.dll file in your library path.
+        5. Start using AutoItX.
+
+
+    //Below are example usages
+    private static void handleFireFoxFileDownload() throws AWTException {
+        Robot robot = new Robot();
+
+        robot.delay(5000);
+
+        AutoItX autoItX;
+        try {
+            autoItX = new AutoItX();
+        } catch (Exception e) {
+        }
+        autoItX.winActivate("Opening");
+
+        robot.keyPress(KeyEvent.VK_ALT);
+        robot.keyPress(KeyEvent.VK_S);
+        robot.keyRelease(KeyEvent.VK_S);
+        robot.keyRelease(KeyEvent.VK_ALT);
+        robot.delay(1000);
+        pressReleaseKey(robot, KeyEvent.VK_ENTER);
+        robot.delay(5000);
+    }
+
+    private static void pressReleaseKey(Robot robot, int keyEvent) {
+        robot.keyPress(keyEvent);
+        robot.keyRelease(keyEvent);
+        robot.delay(1000);
+    }
+
+    public static void handleADFSPopUpInIE(String username, String password) {
+        AutoItX autoItX;
+        try {
+            autoItX = new AutoItX();
+        } catch (Exception e) {
+
+        }
+        autoItX.winActivate("Windows Security");
+        boolean isWindowFound = autoItX.winWaitActive("Windows Security", "", 120);
+        autoItX.send(username + "\t");
+        autoItX.send(password + "\n");
+    }
+    */
+
 }

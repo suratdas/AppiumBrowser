@@ -5,10 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -195,6 +192,41 @@ public class JenkinsAccess {
             e.printStackTrace();
         }
         return "";
+
+    }
+
+    public void isAutomationInProgress() {
+
+        //Assign result to running/notRunning based on the logic to determine automation status
+        String result = "";
+
+        File file = new File("AutomationInProgress.txt");
+        //Automation not running
+        if (result.contains("notRunning")) {
+            System.out.println("Automation not running");
+            if (file.exists()) {
+                System.out.println("Deleting file.");
+                String command = "curl -X POST -u admin:524okasafaf5asd35467asdf73a5sdf74 http://<jenkinsUrl>:8080/job/<job_Name>/enable"; //
+                getCommandLineExecutionDetails(command);
+                file.delete();
+                System.exit(200);
+            }
+        }
+        //Automation running
+        if (result.contains("running")) {
+            System.out.println("Automation running");
+            if (!file.exists()) {
+                try {
+                    String command = "curl -X POST -u admin:524okasafaf5asd35467asdf73a5sdf74 http://<jenkinsUrl>:8080/job/<job_Name>/disable";
+                    getCommandLineExecutionDetails(command);
+                    System.out.println("Creating file.");
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.exit(0);
+        }
     }
 
 }
